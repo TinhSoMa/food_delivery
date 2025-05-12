@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/page/delivery/delivery_page.dart';
+import 'package:food_delivery/page/card/card_page.dart';
+import 'package:food_delivery/page/food/food_detail_page.dart';
+import 'package:food_delivery/page/review/comment_page.dart';
 import 'package:food_delivery/utils/color.dart';
 
-import '../../utils/dimension.dart';
 import 'main_food_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,21 +15,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Dimension.init(context);
-    });
-  }
 
   int _selectedIndex = 0;
   List pages = [
     const MainFoodPage(),
-    // const DeliveryPage(),
-    Text("1231231"),
-    Text("1231231"),
-    Text("1231231"),
+    const FoodDetailPage(),
+    CommentPage(),
+    CardPage(),
   ];
 
   void onTapNav(int index) {

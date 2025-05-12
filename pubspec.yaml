@@ -16,7 +16,7 @@ dependencies:
   get: ^4.7.2
 #  google_maps_flutter: ^2.0.6
   cupertino_icons: ^1.0.8
-
+  google_fonts: ^6.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -28,10 +28,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-assets:
-  - assets/images/
-  - assets/icons/
-  - assets/banners/
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/banners/
   # fonts:
   #   - family: Schyler
   #     fonts:

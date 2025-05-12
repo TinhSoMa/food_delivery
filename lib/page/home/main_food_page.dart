@@ -1,7 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/base/food_item.dart';
+import 'package:food_delivery/base/section_title.dart';
+import 'package:food_delivery/page/home/list_food_best_seller.dart';
+import 'package:food_delivery/page/home/list_food_row.dart';
+import 'package:food_delivery/page/home/list_restaurent.dart';
 import 'package:food_delivery/utils/color.dart';
 import 'package:food_delivery/utils/dimension.dart';
+
+import '../../base/restaurant_item.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -26,7 +32,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   // Text("Địa chỉ:", style: TextStyle(fontSize: 20, color: Colors.white),),
-                  Icon(Icons.location_on, color: Colors.white),
+                  Icon(Icons.search_outlined, color: Colors.white),
                   SizedBox(width: 5),
                   Text(
                     // "Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM",
@@ -44,70 +50,77 @@ class _MainFoodPageState extends State<MainFoodPage> {
         body: Column(
           children: [
             Expanded(
-              child: Column(
-                children: [
-                  SizedBox(height: 10),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, color: AppColors.textPrimary),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: "Bún đậu xì dầu...",
-                              border: InputBorder.none,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.search, color: AppColors.primary, size: Dimension.iconSize24,),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: TextField(
+                              style: TextStyle(
+                                fontSize: Dimension.font16,
+                                color: AppColors.primary,
+                                // backgroundColor: AppColors.primary
+                              ),
+                              decoration: InputDecoration(
+                                // iconColor: AppColors.primary,
+                                hintText: "Bún đậu xì dầu...",
+                                hintStyle: TextStyle(color: AppColors.primary),
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                      height: Dimension.height10*10,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 6,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: Dimension.width10*10,
-                            margin: EdgeInsets.only(right: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: Dimension.height10* 4,
-                                  width: Dimension.width10* 4,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(height: Dimension.width10/4),
-                                Container(
-                                  height: Dimension.height10* 4,
-                                  width: Dimension.width10* 4,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                        ],
                       ),
-                    )
-                ],
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      margin: EdgeInsets.only(left: Dimension.height10, right: Dimension.width10),
+                      child: Column(
+                        children: [
+                          SectionTitle(
+                            title: 'Nhà hàng',
+                            actionText: 'All',
+                            colorText: AppColors.textPrimary,
+                            onActionTap: () {
+                            },
+                          ),
+                          ListRestaurent(),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      margin: EdgeInsets.only(left: Dimension.height10, right: Dimension.width10),
+                      child: SectionTitle(title: 'Danh sách bán chạy', colorText: AppColors.textPrimary,),
+                    ),
+                    SizedBox(height: Dimension.height10,),
+                    ListFoodBestSeller(),
+                    SizedBox(height: Dimension.height10,),
+                    ListFoodRow(),
+                  ],
+                ),
               ),
             ),
           ],
